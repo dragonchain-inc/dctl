@@ -202,7 +202,7 @@ alias d-scls="dctl c ls | jq '.response.results[] | [(.txn_type, .id)]' | jq -s 
 
 ```sh
 # List Smartcontracts Names, Ids
-$ d-cls
+$ d-scls
 
 > [[
     "coolcontract",
