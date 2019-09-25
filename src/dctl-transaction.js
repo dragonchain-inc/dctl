@@ -1,7 +1,4 @@
-#!/usr/bin/env node
-
-// import {DragonchainClient} from 'dragonchain-sdk'
-var pjson = require('../package.json');
+const pjson = require('../package.json');
 const program = require('commander');
 
 program

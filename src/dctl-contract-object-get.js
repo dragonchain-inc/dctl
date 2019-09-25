@@ -1,16 +1,14 @@
-#!/usr/bin/env node
-
 const program = require('commander');
 const util = require('./util');
 
 program
-  .description('Get SmartContract Object from storage.', {
+  .description('Get SmartContract Object from storage', {
     key: 'Path (key) of the object to get'
   })
   .arguments('<key>')
-  .option('-c, --smartContractId [smartContractId]', '(required if not running in a smart contract) Which contract heap to get from.')
-  .option('-v, --verbose', '(optional) Enable STDOUT logger in your Dragonchain SDK.')
-  .option('-i, --dragonchainId [dragonchainID]', '(optional) Override the default dragonchain ID for this command.')
+  .option('-c, --smartContractId [smartContractId]', '(required if not running in a smart contract) Which contract heap to get from')
+  .option('-v, --verbose', '(optional) Enable STDOUT logger in your Dragonchain SDK')
+  .option('-i, --dragonchainId [dragonchainID]', '(optional) Override the default dragonchain ID for this command')
   .parse(process.argv);
 
 util.wrapper(program, async client => {
@@ -18,6 +16,5 @@ util.wrapper(program, async client => {
   if (!key) throw new Error('Parameter "key" is required.');
   const { smartContractId } = program;
   const params = util.removeUndefined({ key, smartContractId });
-  const result = JSON.stringify(await client.getSmartContractObject(params), null, 2);
-  console.log(result);
+  console.log(JSON.stringify(await client.getSmartContractObject(params), null, 2));
 });

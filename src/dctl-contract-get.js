@@ -1,5 +1,3 @@
-#!/usr/bin/env node
-
 const program = require('commander');
 const util = require('./util');
 
@@ -8,9 +6,9 @@ program
     smartContractId: '(optional) The ID of the contract you want to get. (use -t if you want to get by transaction type)'
   })
   .arguments('[smartContractId]')
-  .option('-t, --transactionType [transactionType]', '(mutually exclusive with smartContractId) Transaction type of the contract to get.')
-  .option('-v, --verbose', '(optional) Enable STDOUT logger in your Dragonchain SDK.')
-  .option('-i, --dragonchainId [dragonchainID]', '(optional) Override the default dragonchain ID for this command.')
+  .option('-t, --transactionType [transactionType]', '(mutually exclusive with smartContractId) Transaction type of the contract to get')
+  .option('-v, --verbose', '(optional) Enable STDOUT logger in your Dragonchain SDK')
+  .option('-i, --dragonchainId [dragonchainID]', '(optional) Override the default dragonchain ID for this command')
   .parse(process.argv);
 
 util.wrapper(program, async client => {
