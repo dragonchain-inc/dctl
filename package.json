@@ -3,7 +3,7 @@
   "version": "4.0.0",
   "description": "Get your Dragonchain out of it's shell.",
   "engines": {
-    "node": ">=8"
+    "node": ">=10"
   },
   "preferGlobal": true,
   "bin": {
