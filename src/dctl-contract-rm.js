@@ -3,7 +3,7 @@ const util = require('./util');
 
 program
   .description('Delete a SmartContract by ID', {
-    smartContractId: 'The ID of the contract you want to delete'
+    smartContractIds: 'The ID of the contract(s) you want to delete'
   })
   .arguments('<smartContractIds...>')
   .option('-v, --verbose', '(optional) Enable STDOUT logger in your Dragonchain SDK')
