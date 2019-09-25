@@ -17,6 +17,4 @@ program
   .alias('b')
   .command('creds', 'Manage dragonchain credentials on this machine.')
   .alias('k')
-  .command('publicAddresses', 'Get public blockchain addresses.')
-  .alias('p')
   .parse(process.argv);

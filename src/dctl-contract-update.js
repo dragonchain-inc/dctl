@@ -3,13 +3,15 @@
 const program = require('commander');
 const util = require('./util');
 program
-  .description('Update a running SmartContract')
+  .description('Update a running SmartContract', {
+    smartContractId: 'The id of the smart contract to update'
+  })
   .arguments('<smartContractId>')
   .option('-I, --image <image>', 'Docker image path')
   .option('-C, --cmd <cmd>', 'Docker CMD used as a docker entrypoint')
   .option(
     '-A, --containerArgs <containerArgs>',
-    'Docker command args.',
+    'Docker command args. Specify more than one for more args. ie -A arg1 -A arg2',
     (arg, containerArgs) => {
       containerArgs.push(arg);
       return containerArgs;
@@ -25,23 +27,38 @@ program
   .option('-v, --verbose', '(optional) Enable STDOUT logger in your Dragonchain SDK.')
   .option('-i, --dragonchain-id [dragonchainID]', '(optional) Override the default dragonchain ID for this command.')
   .option('-r, --registry-credentials [registryCredentials]', '(optional) Credentials to private docker registry.')
+  .option('--remove-schedule', '(opitonal) Set this flag to remove any existing schedule (cron or seconds) on the contract')
   .parse(process.argv);
 
 util.wrapper(program, async client => {
-  const { image, cmd, executionOrder, disable, containerArgs, environmentVariables, secrets, scheduleIntervalInSeconds, cronExpression, registryCredentials } = program;
+  const {
+    removeSchedule,
+    image,
+    cmd,
+    executionOrder,
+    disable,
+    containerArgs,
+    environmentVariables,
+    secrets,
+    scheduleIntervalInSeconds,
+    cronExpression,
+    registryCredentials
+  } = program;
   const [smartContractId] = program.args;
+  if (!smartContractId) throw new Error("Parameter 'smartContractId' must be defined");
   const params = util.removeUndefined({
     smartContractId,
     image,
     cmd,
-    secrets,
+    secrets: secrets ? JSON.parse(secrets) : undefined,
     cronExpression,
     executionOrder,
     registryCredentials,
-    args: Boolean(containerArgs.length) && containerArgs,
+    args: (Boolean(containerArgs.length) && containerArgs) || undefined,
     environmentVariables: environmentVariables ? JSON.parse(environmentVariables) : undefined,
     scheduleIntervalInSeconds: scheduleIntervalInSeconds && Number(scheduleIntervalInSeconds),
-    enabled: !disable
+    enabled: !disable,
+    disableSchedule: removeSchedule
   });
   const response = await client.updateSmartContract(params);
   console.log(JSON.stringify(response, null, 2));

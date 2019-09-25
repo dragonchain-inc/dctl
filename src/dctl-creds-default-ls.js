@@ -5,5 +5,5 @@ const util = require('./util');
 
 util.errorHandler(() => {
   const currentConfig = ini.parse(fs.readFileSync(util.getConfigFilePath(), 'utf-8'));
-  console.log(currentConfig['default'].dragonchain_id);
+  console.log(currentConfig.default.dragonchain_id);
 });

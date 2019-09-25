@@ -4,19 +4,15 @@ const program = require('commander');
 const util = require('./util');
 
 program
-  .description('Update a Transaction Type.')
-  .arguments('<transactionType>')
-  .option('-c, --custom-indexes <customIndexes>', 'Custom Indexes for this transaction type. ex. [{"key":"a","path":"/"}]')
+  .description("Get a block's pending verifications", { blockId: 'The ID of a block.' })
+  .arguments('<blockId>')
   .option('-v, --verbose', '(optional) Enable STDOUT logger in your Dragonchain SDK.')
   .option('-i, --dragonchainId [dragonchainID]', '(optional) Override the default dragonchain ID for this command.')
   .parse(process.argv);
 
 util.wrapper(program, async client => {
-  const [transactionType] = program.args;
-  const { customIndexes } = program;
-  const response = await client.updateTransactionType({
-    transactionType,
-    customIndexes: JSON.parse(customIndexes)
-  });
+  const [blockId] = program.args;
+  if (!blockId) throw new Error("Missing required parameter 'blockId'");
+  const response = await client.getPendingVerifications({ blockId });
   console.log(JSON.stringify(response, null, 2));
 });

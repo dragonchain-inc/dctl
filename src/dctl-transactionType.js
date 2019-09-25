@@ -13,6 +13,4 @@ program
   .alias('l')
   .command('rm', 'Delete a Transaction Type')
   .alias('d')
-  .command('update', 'Update a Transaction Type')
-  .alias('u')
   .parse(process.argv);

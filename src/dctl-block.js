@@ -7,6 +7,6 @@ program
   .alias('g')
   .command('query', 'Query blocks')
   .alias('q')
-  .command('verifications', 'Get Block Verifications')
+  .command('verification', 'Get Block Verifications')
   .alias('v')
   .parse(process.argv);

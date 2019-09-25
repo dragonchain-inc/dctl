@@ -10,6 +10,6 @@ program
   .parse(process.argv);
 
 util.wrapper(program, async client => {
-  const result = JSON.stringify(await client.querySmartContracts(), null, 2);
+  const result = JSON.stringify(await client.listSmartContracts(), null, 2);
   console.log(result);
 });
