@@ -1,6 +1,6 @@
 {
   "name": "dctl",
-  "version": "2.0.0",
+  "version": "4.0.0",
   "description": "Get your Dragonchain out of it's shell.",
   "engines": {
     "node": ">=8"
