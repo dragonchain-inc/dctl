@@ -6,8 +6,8 @@ program
     transactionId: 'The transaction id to get'
   })
   .arguments('<transactionId>')
-  .option('-v, --verbose', '(optional) Enable STDOUT logger in your Dragonchain SDK.')
-  .option('-i, --dragonchainId [dragonchainID]', '(optional) Override the default dragonchain ID for this command.')
+  .option('-v, --verbose', '(optional) Enable STDOUT logger in your Dragonchain SDK')
+  .option('-i, --dragonchainId [dragonchainID]', '(optional) Override the default dragonchain ID for this command')
   .parse(process.argv);
 
 util.wrapper(program, async client => {

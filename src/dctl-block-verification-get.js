@@ -2,7 +2,7 @@ const program = require('commander');
 const util = require('./util');
 
 program
-  .description("Get a block's verifications", { blockId: 'The ID of a block.' })
+  .description("Get a block's verifications", { blockId: 'The ID of a block' })
   .arguments('<blockId>')
   .option('-l, --level <level>', '(int, optional) Verification level. (2-5)')
   .option('-v, --verbose', '(optional) Enable STDOUT logger in your Dragonchain SDK')

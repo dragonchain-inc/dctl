@@ -8,11 +8,11 @@ program
     payload: 'The payload of the transaction, either as json or a raw string'
   })
   .arguments('<transactionType> <payload>')
-  .option('-c, --callbackUrl <callbackUrl>', '(optional) The http address you want called after processing.')
-  .option('-t, --tag <tag>', '(optional) Tag you want to add to this transaction.')
-  .option('-v, --verbose', '(optional) Enable STDOUT logger in your Dragonchain SDK.')
-  .option('-i, --dragonchainId [dragonchainID]', '(optional) Override the default dragonchain ID for this command.')
-  .option('-f, --file', '(optional) Pass in a JSON file path as payload instead of a raw string.')
+  .option('-c, --callbackUrl <callbackUrl>', '(optional) The http address you want called after processing')
+  .option('-t, --tag <tag>', '(optional) Tag you want to add to this transaction')
+  .option('-v, --verbose', '(optional) Enable STDOUT logger in your Dragonchain SDK')
+  .option('-i, --dragonchainId [dragonchainID]', '(optional) Override the default dragonchain ID for this command')
+  .option('-f, --file', '(optional) Pass in a JSON file path as payload instead of a raw string')
   .parse(process.argv);
 
 util.wrapper(program, async client => {
