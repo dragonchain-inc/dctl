@@ -17,11 +17,13 @@ util.wrapper(program, async client => {
   const [name] = program.args;
   const { privateKey, rpcAddress, chainId } = program;
   if (!name) throw new Error("Parameter 'name' must be provided");
-  const response = await client.updateEthereumInterchain(util.removeUndefined({
-    name,
-    privateKey,
-    rpcAddress,
-    chainId: chainId && Number(chainId)
-  }));
+  const response = await client.updateEthereumInterchain(
+    util.removeUndefined({
+      name,
+      privateKey,
+      rpcAddress,
+      chainId: chainId && Number(chainId)
+    })
+  );
   console.log(JSON.stringify(response, null, 2));
 });

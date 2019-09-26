@@ -22,14 +22,16 @@ util.wrapper(program, async client => {
   if (!name) throw new Error("Parameter 'name' must be provided");
   if (!to) throw new Error("Parameter 'to' must be provided");
   if (!value) throw new Error("Parameter 'value' must be provided");
-  const response = await client.signEthereumTransaction(util.removeUndefined({
-    name,
-    to,
-    data,
-    value,
-    gasPrice,
-    gas,
-    nonce
-  }));
+  const response = await client.signEthereumTransaction(
+    util.removeUndefined({
+      name,
+      to,
+      data,
+      value,
+      gasPrice,
+      gas,
+      nonce
+    })
+  );
   console.log(JSON.stringify(response, null, 2));
 });
